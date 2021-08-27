@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\Rate;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use Stringable;
 
 class UserSeeder extends Seeder
@@ -25,7 +26,7 @@ class UserSeeder extends Seeder
             'email' => 'brouenoch03@gmail.com',
             'email_verified_at' => now(),
             'admin' => 1,
-            'password' => '$2y$10$BUJO8Nfadg4bP.4Qi74X6.a9uvVaxHVFEzOqsgTeI.Jfnxx6HD..e', // password
+            'password' => Hash::make('Narutokun2021'), // password
             'remember_token' => Str::random(10)
         ]);
         Rate::factory()->count(1)->for(Post::factory(), 'rateable')->create();
