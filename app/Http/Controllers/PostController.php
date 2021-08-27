@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use function Symfony\Component\String\b;
+
 class PostController extends Controller
 {
     public function index($id,  Request $request)
@@ -90,8 +92,35 @@ class PostController extends Controller
         $rate = Rate::whereHasMorph(
             'rateable', Post::class,
             $quer
-        )->get();
-        dd($rate);
+        )->first();
+        $rate->likes ++;
+        $rate->save();
+        return back();
+    }
+
+    
+    public function dislikeItem(Request $request, $id)
+    {
+        # for like posts or comment
+        # define query function
+        $quer = function (Builder $query, $type) {
+            global $request;
+            if ($type === Post::class) {    
+            $query->where('title', '=', Post::find($request->id)->title);
+            } else {
+                
+                $query->where('id', '=', $request->id);
+            }
+            
+        };
+        $rate = Rate::whereHasMorph(
+            'rateable', Post::class,
+            $quer
+        )->first();
+        
+        $rate->dislikes ++;
+        $rate->save();   
+        return back();
     }
 
     public function bestPost()
@@ -108,6 +137,12 @@ class PostController extends Controller
             Post::class)->orderBy('likes', 'desc')->first();
     
         return redirect('posts/'. $liked_post->rateable->id);
+    }
+
+    public function deleteComment(Request $request)
+    {
+        Post::find($request->id)->delete();
+        return redirect()->route('home');
     }
     
 }

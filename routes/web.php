@@ -28,12 +28,13 @@ Route::group(['middleware' => 'auth'], function () {
         return view('dashboard');
     })->name('dashboard');
     Route::get('/', [HomeController::class, 'index'])->name('home');
-
+    Route::delete('/delete/{id}', [PostController::class, 'deleteComment'])->name('deleteComment');
     Route::get('/form', [HomeController::class, 'form'])->name('form');
     Route::post('/receive', [HomeController::class, 'receive'])->name('receive');
     Route::post('/posts/registComment/{id}', [PostController::class, 'registComment'])->name('registComment');
     Route::get('/posts/{id}', [PostController::class, 'index'])->name('post');
     Route::post('/like/{id}', [PostController::class, 'likeItem'])->name('like');
+    Route::post('/dislike/{id}', [PostController::class, 'dislikeItem'])->name('dislike');
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     Route::post('/block/{id}', [AdminController::class, 'blockUser'])->name('blockUser');
     Route::get('/account', [AccountController::class, 'index'])->name('myAccount');

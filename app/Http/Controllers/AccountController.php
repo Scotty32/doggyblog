@@ -39,4 +39,14 @@ public function setPP()
         ]);
         return back();
     }
+
+        public function saveDog(Request $request)
+        {
+            Auth::user()->dogs()->create([
+                'name' => $request->name,
+                'age' => $request->age,
+                'sexe ' => $request->sexe
+            ]);
+        }
+
 }

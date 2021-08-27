@@ -40,10 +40,13 @@
         <div class="account-nav">
                 <div class="user-img">
                     @if (Auth::user()->image)
-                        <form action="{{route('setPP')}}" method="get"><img src="{{Url(Storage::url('public/' . Auth::user()->image->path))}}" alt="" onclick="event.preventDefault();
-                                                this.closest('form').submit();"></form> 
+                    <form action="{{route('setPP')}}" method="get">
+                    <button type="submit"><img src="{{Url(Storage::url('public/' . Auth::user()->image->path))}}" alt="">
+                        </button>  
+                    </form>
+                    
                     @else
-                    <img src="{{asset('storage/usersImage/user_default.png')}}" alt="" srcset=""><a href="route('setPP')"></a></img> 
+                    <form action="{{route('setPP')}}" method="get"><img src="{{asset('storage/usersImage/user_default.png')}}" alt="" srcset=""></form>
                     @endif
                 </div>
                 <div class="user-info">

@@ -42,6 +42,17 @@
             </section>
         </div>
         </section>
+        @if(Auth::user()->admin)
+            <div class="delete-post">
+            <form action="{{ route('deleteComment', [$post->id]) }}" method="post">
+    <button class="btn btn--red" type="submit"> Supprimer ce post </button>
+    @method('delete')
+    @csrf
+</form>
+            </div>
+        @else
+            
+        @endif
 
     </div>
 @endsection

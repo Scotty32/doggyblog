@@ -14,14 +14,20 @@
                 </div>
                 <div class="post-rate">
                     <div class="like">
-                        <a href="{{route('like', [$post->id])}}"></a>
-                    <i class="far fa-thumbs-up"></i>
+                        <form action="{{route('like', [$post->id])}}" method="POST">
+                        @csrf
+                        <i class="far fa-thumbs-up" onclick="event.preventDefault();
+                                                this.closest('form').submit()"></i>
+                        </form>
                         <span class="like-rate">
                             {{$post->rate->likes}}
                         </span>
                     </div>
-                    <div class="dislike">
-                    <i class="far fa-thumbs-down"></i>
+                    <div class="dislike"><form action="{{route('dislike', [$post->id])}}" method="POST">
+                        @csrf
+                        <i class="far fa-thumbs-down" onclick="event.preventDefault();
+                                                this.closest('form').submit()"></i>
+                        </form>
                     <span class="like-rate">
                             {{$post->rate->dislikes}}
                         </span>
