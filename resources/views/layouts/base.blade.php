@@ -29,7 +29,7 @@
         <div class="wrapper header">
         <div class="logo">
             <div class="logo-img">
-                <img src="{{asset('img/dalmatien.svg')}}" >
+                <img src="{{ asset('img/dalmatien.svg')}}" >
             </div>
             <div class="scroll">
             <span class="scroll-txt">calin de Toutou.com || Le blog des amis canin || et vous, que faite vous pour les mettre a l'aise?</span>
@@ -46,7 +46,7 @@
                     </form>
                     
                     @else
-                    <form action="{{route('setPP')}}" method="get"><button type="submit"><img src="{{Url(Storage::url('public/usersImage/user_default))}}" alt="" srcset=""></button></form>
+                    <form action="{{route('setPP')}}" method="get"><button type="submit"><img src="{{asset('storage/usersImage/user_default.png')}}" alt="" srcset=""></button></form>
                     @endif
                 </div>
                 <div class="user-info">
