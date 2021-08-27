@@ -29,7 +29,7 @@
         <div class="wrapper header">
         <div class="logo">
             <div class="logo-img">
-                <img src="{{ asset('img/dalmatien.svg')}}" >
+                <img src="{{asset('img/dalmatien.svg')}}" >
             </div>
             <div class="scroll">
             <span class="scroll-txt">calin de Toutou.com || Le blog des amis canin || et vous, que faite vous pour les mettre a l'aise?</span>
