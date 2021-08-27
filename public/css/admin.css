@@ -1,0 +1,253 @@
+@import url(https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap);
+@-webkit-keyframes subline {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 100%;
+  }
+}
+@keyframes subline {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 100%;
+  }
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: "Playfair Display", serif;
+  font-size: 16px;
+}
+
+.main {
+  height: 100%;
+}
+
+.content-main-container {
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+.select {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  background-color: #217267;
+  height: 10%;
+  padding: 0.5em 0;
+  align-items: center;
+}
+
+.hbg-container {
+  width: 15vw;
+}
+
+.tohome a,
+.logout {
+  border-radius: 0.6em;
+}
+
+.search-bar {
+  display: flex;
+  border-radius: 0.7em;
+  background-color: whitesmoke;
+  justify-content: space-between;
+  width: 30vw;
+  height: 4vh;
+  padding: 1vh;
+}
+.search-bar i {
+  background-color: inherit;
+  border: none;
+}
+
+.searchbar-input {
+  width: 25vw;
+  border: none;
+  background-color: inherit;
+}
+
+.tohome {
+  margin-left: auto;
+  margin-right: 3vw;
+  justify-self: flex-end;
+  background-color: lightblue;
+}
+
+.container {
+  display: flex;
+  background-color: transparent;
+  background-color: #e2e2e2;
+  height: 90%;
+}
+
+.side-navbar {
+  display: flex;
+  flex-direction: column;
+  width: 10rem;
+  background-color: #f1f1f1a4;
+  border: 2px solid;
+}
+.navbar-item {
+  position: relative;
+  display: block;
+  height: 10vh;
+  margin: 4vh;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+}
+.navbar-item span {
+  z-index: -1;
+  cursor: pointer;
+}
+
+.navbar-item:not(.logout):before {
+  content: "";
+  position: absolute;
+  display: none;
+  width: 0.3em;
+  height: 100%;
+  background-color: yellowgreen;
+  transform: translateX(-100%);
+}
+
+.navbar-item:not(.logout):hover::before {
+  display: block;
+  -webkit-animation: subline 0.3s ease-in;
+          animation: subline 0.3s ease-in;
+}
+
+.select-content {
+  display: flex;
+  flex-direction: column;
+  width: 80rem;
+}
+
+.content-container {
+  height: 70%;
+  display: flex;
+  flex-direction: row;
+}
+
+.content-container.first {
+  height: 30%;
+}
+
+.content-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 0;
+  background-color: white;
+  flex-direction: row;
+  border: 2px solid black;
+}
+
+.resume {
+  width: 100%;
+}
+.resume div {
+  width: 40%;
+}
+
+.count {
+  font-size: 36px;
+  position: absolute;
+  right: 20%;
+  top: 20%;
+}
+
+.post-count {
+  color: #ffae00;
+}
+
+.content-container.second > .content-item {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.content-container.second > .content-item > * {
+  white-space: nowrap;
+}
+
+td {
+  border: 1px solid #858282;
+  border-right: none;
+  border-left: none;
+}
+
+.content-item.users td {
+  height: 0.4em;
+  background-color: aquamarine;
+}
+
+*.suscriber {
+  background-color: inherit;
+}
+
+.content-main-container.suscriber.select {
+  display: flex;
+  justify-content: center;
+  border: 2px solid black;
+  padding: 1em 3em;
+}
+.content-main-container.suscriber span {
+  min-width: -webkit-min-content;
+  min-width: -moz-min-content;
+  min-width: min-content;
+  padding: 0.2em;
+  margin-right: 2em;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.toggle-img {
+  width: 1.8em;
+  height: 2em;
+  margin: 0;
+  padding: 0;
+}
+
+.toggle-button {
+  position: relative;
+  z-index: 1;
+  transition: 0.8s;
+}
+.toggle-button::before {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 120%;
+  z-index: 2;
+  background-color: yellowgreen;
+  transform: translateX(100%);
+  transition: 0.3s;
+}
+.toggle-button.blocked::before {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 120%;
+  z-index: 2;
+  background-color: #c90505;
+  transform: translateX(0%);
+  transition: 0.3s;
+}

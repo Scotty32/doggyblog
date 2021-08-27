@@ -1,0 +1,12 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/js/admin.js": "/js/admin.js",
+    "/js/account.js": "/js/account.js",
+    "/js/chat.js": "/js/chat.js",
+    "/css/style.css": "/css/style.css",
+    "/css/admin.css": "/css/admin.css",
+    "/css/auth.css": "/css/auth.css",
+    "/css/chat.css": "/css/chat.css",
+    "/css/account.css": "/css/account.css",
+    "/css/app.css": "/css/app.css"
+}
