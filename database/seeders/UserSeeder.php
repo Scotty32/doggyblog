@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
             'email' => 'brouenoch03@gmail.com',
             'email_verified_at' => now(),
             'admin' => 1,
-            'password' => 'Narutokun2021', // password
+            'password' => '$2y$10$BUJO8Nfadg4bP.4Qi74X6.a9uvVaxHVFEzOqsgTeI.Jfnxx6HD..e', // password
             'remember_token' => Str::random(10)
         ]);
         Rate::factory()->count(1)->for(Post::factory(), 'rateable')->create();
