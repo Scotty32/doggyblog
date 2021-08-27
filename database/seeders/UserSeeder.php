@@ -21,8 +21,10 @@ class UserSeeder extends Seeder
         User::factory()->count(10)->hasRoles(1, ['name' => 'moderateur'])->create();
         Rate::factory()->count(1)->for(Post::factory(), 'rateable')->create();
         Post::factory()->count(10)->create();
-        Rate::factory()->count(1)->for(Post::factory(), 'rateable')->create();
         Comment::factory()->count(5)->for(Post::factory(), 'commentable')->create();
+        Rate::factory()->count(1)->for(Comment::factory(), 'rateable')->create();
+        Rate::factory()->count(1)->for(Comment::factory(), 'rateable')->create();Rate::factory()->count(1)->for(Comment::factory(), 'rateable')->create();
+        Rate::factory()->count(1)->for(Comment::factory(), 'rateable')->create();
         Rate::factory()->count(1)->for(Comment::factory(), 'rateable')->create();
         Dog::factory()->count(5)->create();
     }
