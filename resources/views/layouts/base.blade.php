@@ -46,7 +46,7 @@
                     </form>
                     
                     @else
-                    <form action="{{route('setPP')}}" method="get"><img src="{{asset('storage/usersImage/user_default.png')}}" alt="" srcset=""></form>
+                    <form action="{{route('setPP')}}" method="get"><button type="submit"><img src="{{Url(Storage::url('public/usersImage/user_default)}}" alt="" srcset=""></button></form>
                     @endif
                 </div>
                 <div class="user-info">
