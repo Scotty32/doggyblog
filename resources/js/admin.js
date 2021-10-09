@@ -33,7 +33,7 @@ navbarItems.forEach(item => {
 });
 
 const toggleBtn = document.querySelectorAll('.toggle-button');
-
+//pff
 toggleBtn.forEach(element => {
     console.log(element.attributes.val.value)
     if (element.attributes.val.value == 1) {
