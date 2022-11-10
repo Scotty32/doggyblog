@@ -30,7 +30,7 @@ class AdminController extends Controller
             abort('403');
         }
         $user =User::find($id);
-        $user->isBlockeq = !$user->isBlockeq;
+        $user->isBlocked = !$user->isBlocked;
         $user->save();
         return redirect()->back()->with('message', 'utilisateur');
     }

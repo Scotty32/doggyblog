@@ -22,7 +22,7 @@
     </span>
     <form action="{{route('blockUser', [$suscriber->id])}}" method="post">
     @csrf
-    <span class="toggle-button" val='{{$suscriber->isBlockeq}}'>
+    <span class="toggle-button" val='{{$suscriber->isBlocked}}'>
         <img src="..\icons\check-solid.svg" alt="" class="toggle-img allow">
         <img src="..\icons\times-solid.svg" alt="" class="toggle-img block">
         

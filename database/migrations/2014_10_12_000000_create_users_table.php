@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->boolean('admin')->default(true);
             $table->integer('isSignaled')->default(0);
             $table->timestamp('last_activity')->nullable();
-            $table->boolean('isBlockeq')->default(false);
+            $table->boolean('isBlocked')->default(false);
         });
     }
 
