@@ -27,9 +27,22 @@ class UserFactory extends Factory
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => Hash::make('test'), // password
+            'password' => Hash::make('Tester2021#'), // password
             'remember_token' => Str::random(10),
         ];
+    }
+
+    /**
+     * Indicate that the user is anakin.
+     */
+    public function anakin(): Factory
+    {
+        return $this->state(function () {
+            return [
+                'name' => 'scottdev',
+                'email' => 'scottdev037@gmail.com'
+            ];
+        });
     }
 
     /**

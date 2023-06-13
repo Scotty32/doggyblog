@@ -89,9 +89,6 @@ a {
 }
 
 .header {
-  /* background-image: url('../img/justin-veenema-UlmPSBvHTY0-unsplash.jpg');
-  background-size: cover;
-  background-repeat: no-repeat; */
   display: flex;
   flex-direction: column;
   height: 300px;

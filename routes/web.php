@@ -10,7 +10,7 @@ use App\Models\Rate;
 use Doctrine\DBAL\Driver\Middleware;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
- 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,16 +23,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::delete('/profile/{id}', [PostController::class, 'deleteComment'])->name('profile.show');
     Route::delete('/delete/{id}', [PostController::class, 'deleteComment'])->name('deleteComment');
     Route::get('/form', [HomeController::class, 'form'])->name('form');
     Route::post('/receive', [HomeController::class, 'receive'])->name('receive');
     Route::post('/posts/registComment/{id}', [PostController::class, 'registComment'])->name('registComment');
-    Route::get('/posts/{id}', [PostController::class, 'index'])->name('post');
+    Route::get('/post/{id}', [PostController::class, 'index'])->name('post.show');
     Route::post('/like/{id}', [PostController::class, 'likeItem'])->name('like');
     Route::post('/dislike/{id}', [PostController::class, 'dislikeItem'])->name('dislike');
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
@@ -43,8 +44,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/post-admin_message', [ContactUsController::class, 'sendMessage'])->name('sendMessageAdmin');
     Route::get('/setPP', [AccountController::class, 'setPP'])->name('setPP');
     Route::post('/postPP', [AccountController::class, 'pp'])->name('postPP');
-    Route::get('/bestpost', [PostController::class, 'bestPost'])->name('bestpost');
-    Route::get('/create', [PostController::class, 'newPost'])->name('newPost');
-    Route::post('/create', [PostController::class, 'createPost'])->name('createPost');
+    Route::get('/bestpost', [PostController::class, 'bestPost'])->name('post.show_best');
+    Route::post('/create', [PostController::class, 'createPost'])->name('post.create');
 });
 require __DIR__.'/auth.php';

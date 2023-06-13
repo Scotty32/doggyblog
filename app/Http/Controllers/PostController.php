@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Post;
-use App\Models\Rate;
-use App\Models\User;
+use App\Services\Post\PostService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,10 +13,17 @@ use function Symfony\Component\String\b;
 
 class PostController extends Controller
 {
+    private PostService $postService;
+
+    public function __construct(PostService $postService)
+    {
+        $this->postService= $postService;
+    }
+
     public function index($id,  Request $request)
     {
         // make a query function which select post for comment query
-        $quer = 
+        $quer =
         function (Builder $query)
         {
             global $request;
@@ -53,8 +59,7 @@ class PostController extends Controller
         'content' => $request->content,
         'user_id' => Auth::user()->id,
     ]);
-    
-    $post->rate()->create();
+
     return back();
     }
     public function registComment(Request $request ,$id) {
@@ -79,64 +84,26 @@ class PostController extends Controller
     {
         # for like posts or comment
         # define query function
-        $quer = function (Builder $query, $type) {
-            global $request;
-            if ($type === Post::class) {    
-            $query->where('title', '=', Post::find($request->id)->title);
-            } else {
-                
-                $query->where('id', '=', $request->id);
-            }
-            
-        };
-        $rate = Rate::whereHasMorph(
-            'rateable', Post::class,
-            $quer
-        )->first();
-        $rate->likes ++;
-        $rate->save();
+        $this->postService->likePost($id);
+
         return back();
     }
 
-    
+
     public function dislikeItem(Request $request, $id)
     {
         # for like posts or comment
         # define query function
-        $quer = function (Builder $query, $type) {
-            global $request;
-            if ($type === Post::class) {    
-            $query->where('title', '=', Post::find($request->id)->title);
-            } else {
-                
-                $query->where('id', '=', $request->id);
-            }
-            
-        };
-        $rate = Rate::whereHasMorph(
-            'rateable', Post::class,
-            $quer
-        )->first();
-        
-        $rate->dislikes ++;
-        $rate->save();   
+        $this->postService->dislikePost($id);
+
         return back();
     }
 
-    public function bestPost()
+    public function bestPost(Request $request)
     {
-        $quer = 
-        function (Builder $query)
-        {
-            global $request;
-            $query->all();
-        };
+        $best_post = Post::likeable()->ofMany('likes', 'max')->first();
 
-        $liked_post = Rate::whereHasMorph(
-            'rateable',
-            Post::class)->orderBy('likes', 'desc')->first();
-    
-        return redirect('posts/'. $liked_post->rateable->id);
+        return $this->index($best_post->id, $request);
     }
 
     public function deleteComment(Request $request)
@@ -144,5 +111,5 @@ class PostController extends Controller
         Post::find($request->id)->delete();
         return redirect()->route('home');
     }
-    
+
 }

@@ -1,3 +1,51 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import url('https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yomogi&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Loop&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes scrolling {
+    0% {
+        transform: translateX(100%);
+    }
+    40% {
+        transform: translateX(0%);
+    }
+    60% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes scrolling2 {
+    0% {
+        transform: translateX(-100%);
+    }
+    40% {
+        transform: translateX(0%);
+    }
+    60% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.main-container>* {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+#posts-section {
+    background-image: url('../img/dog-bg.svg');
+    background-repeat:no-repeat;
+    background-size: cover;
+    &>* {
+
+    background-color: rgb(255, 255, 255, 0.9);
+    }
+}
