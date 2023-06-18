@@ -22,10 +22,10 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->integer('phonenumber')->nullable();
-            $table->boolean('admin')->default(true);
-            $table->integer('isSignaled')->default(0);
+            $table->boolean('admin')->default(0);
+            $table->integer('isSignaled')->default(false);
             $table->timestamp('last_activity')->nullable();
-            $table->boolean('isBlockeq')->default(false);
+            $table->boolean('isBlocked')->default(false);
         });
     }
 

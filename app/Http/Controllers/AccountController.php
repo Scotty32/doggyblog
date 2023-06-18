@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Image;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 
 class AccountController extends Controller
 {
@@ -14,7 +12,7 @@ class AccountController extends Controller
     {
         return view('userAccount');
     }
-    
+
 public function setPP()
 {
 
@@ -32,11 +30,8 @@ public function setPP()
         $request->image->storeAs('public/usersImage', $imname);
         $path = 'usersImage/' . $imname;
         $user =  User::find(Auth::user()->id);
-        
-        $user->image()->create([
-            'path' => $path,
-            'user_id' => Auth::user()->id,
-        ]);
+
+        // to rewrite
         return back();
     }
 

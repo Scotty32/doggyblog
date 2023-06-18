@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Concerns\Commentable;
+use App\Concerns\Likeable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, Likeable, Commentable;
 
     protected $guarded = ['id'];
     /**
@@ -15,38 +17,16 @@ class Post extends Model
      * inverse calling
      */
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
     /**
-     * polymorphique relation with image model
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
      */
-
-     public function images()
-     {
-        return $this->morphMany(Image::class, 'imageable');
-     }
-
-     
-    /**
-     * polymorphique relation with comment model
-     */
-
-    public function comments()
+    protected $dates = [
+        'posted_at'
+    ];
+    public function author()
     {
-        return $this->morphMany(Comment::class, 'commentable');
-    }
-    /**
-     * more liked comments ralation instance
-     */
-    public function bestComment()
-{
-    return $this->morphOne(Image::class, 'imageable')->ofMany('likes', 'max');
-}
-    public function rate()
-    {
-        return $this->morphOne(Rate::class, 'rateable');
+        return $this->belongsTo(User::class, 'author_id');
     }
 }

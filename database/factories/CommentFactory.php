@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Comment;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CommentFactory extends Factory
@@ -22,10 +24,11 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            'content' => $this->faker->sentence(15),
-            'user_id' => rand(1, 10),
-            'commentable_id' =>  13,
-            'commentable_type' => "App\Models\Post"
+            'content' => $this->faker->paragraph(),
+            'author_id' => User::factory(),
+            'commentable_id' =>  Post::factory(),
+            'commentable_type' => "App\Models\Post",
+            'posted_at' => now(),
         ];
     }
 }

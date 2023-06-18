@@ -2,28 +2,19 @@
 
 namespace App\Models;
 
+use App\Concerns\Likeable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Dog extends Model
 {
-    use HasFactory;
+    use HasFactory, Likeable;
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    public const SEX_MALE = "Male";
 
-    public function image()
+    public function owner(): BelongsTo
     {
-        return $this->morphMany(Image::class, 'imageable');
-    }
-
-    
-    
-    public function rate()
-    {
-        return $this->morphOne(Image::class, 'rateable');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

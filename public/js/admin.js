@@ -30,7 +30,8 @@ navbarItems.forEach(function (item) {
     show(toShow);
   });
 });
-var toggleBtn = document.querySelectorAll('.toggle-button');
+var toggleBtn = document.querySelectorAll('.toggle-button'); //pff
+
 toggleBtn.forEach(function (element) {
   console.log(element.attributes.val.value);
 

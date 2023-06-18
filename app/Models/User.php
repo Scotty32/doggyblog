@@ -42,7 +42,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    
+
     /**
      * relation with all model which required it
      */
@@ -52,40 +52,8 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
-    public function image()
-    {
-        return $this->morphOne(Image::class, 'imageable');
-    }
-
-    public function messageAdmins()
-    {
-        return $this->hasMany(MessageAdmin::class);
-    }
-
-    
-    public function messageChats()
-    {
-        return $this->hasMany(MessageChat::class);
-    }
-
     public function dogs()
     {
         return $this->hasMany(Dog::class);
-    }
-
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class);
-    }
-
-    /**
-     * get a user default image
-     */
-
-         
-    public function userDefault()
-    {
-
-        return (object)['name' =>'Anonymious', 'id' => 0];
     }
 }
